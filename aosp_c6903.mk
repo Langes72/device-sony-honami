@@ -14,8 +14,20 @@
 
 TARGET_KERNEL_CONFIG := aosp_rhine_honami_defconfig
 
-$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/telephony.mk)
+# Boot animation
+TARGET_SCREEN_HEIGHT := 1940
+TARGET_SCREEN_WIDTH := 1080
+
+## Specify phone tech before including full_phone
+$(call inherit-product, vendor/broken/config/gsm.mk)
+
+# Inherit some common broken stuff.
+$(call inherit-product, vendor/broken/config/common_full_phone.mk)
+
+# Enhanced NFC
+$(call inherit-product, vendor/broken/config/nfc_enhanced.mk)
+
+$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 $(call inherit-product, device/sony/rhine/device.mk)
 $(call inherit-product, vendor/sony/honami/honami-vendor.mk)
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
@@ -31,7 +43,7 @@ PRODUCT_COPY_FILES += \
     device/sony/honami/rootdir/system/etc/sensor_def_qcomdev.conf:system/etc/sensor_def_qcomdev.conf \
     device/sony/honami/rootdir/system/etc/sensors_calib.conf:system/etc/sensors_calib.conf
 
-PRODUCT_NAME := aosp_c6903
+PRODUCT_NAME := broken_honami
 PRODUCT_DEVICE := honami
 PRODUCT_MODEL := Xperia Z1 (AOSP)
 PRODUCT_BRAND := Sony
