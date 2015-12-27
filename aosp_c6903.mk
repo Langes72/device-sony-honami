@@ -14,13 +14,18 @@
 
 TARGET_KERNEL_CONFIG := aosp_rhine_honami_defconfig
 
-$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/telephony.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, device/sony/rhine/device.mk)
 $(call inherit-product, vendor/sony/honami/honami-vendor.mk)
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 $(call inherit-product-if-exists, prebuilts/chromium/webview_prebuilt.mk)
 $(call inherit-product-if-exists, vendor/google/products/gms.mk)
+
+# Enhanced NFC
+$(call inherit-product, vendor/pac/config/nfc_enhanced.mk)
+
+# Inherit some common CM stuff.
+$(call inherit-product, vendor/pac/config/common_full_phone.mk)
 
 DEVICE_PACKAGE_OVERLAYS += \
     device/sony/honami/overlay
@@ -31,7 +36,11 @@ PRODUCT_COPY_FILES += \
     device/sony/honami/rootdir/system/etc/sensor_def_qcomdev.conf:system/etc/sensor_def_qcomdev.conf \
     device/sony/honami/rootdir/system/etc/sensors_calib.conf:system/etc/sensors_calib.conf
 
-PRODUCT_NAME := aosp_c6903
+# Bootanimation
+PRODUCT_COPY_FILES += \
+   vendor/pac/prebuilt/common/media/bootanimation/1080.zip:system/media/bootanimation.zip
+
+PRODUCT_NAME := pac_honami
 PRODUCT_DEVICE := honami
 PRODUCT_MODEL := Xperia Z1 (AOSP)
 PRODUCT_BRAND := Sony
@@ -44,3 +53,5 @@ PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.sf.lcd_density=420 \
     ro.usb.pid_suffix=19E
+
+PAC_BOOTANIMATION_NAME := 1080
