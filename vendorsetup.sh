@@ -14,4 +14,4 @@
 # limitations under the License.
 #
 
-add_lunch_combo aosp_c6903-userdebug
+add_lunch_combo pac_honami-userdebug
