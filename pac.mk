@@ -31,6 +31,7 @@ $(call inherit-product, vendor/pac/config/common_full_phone.mk)
 DEVICE_PACKAGE_OVERLAYS += \
     device/sony/honami/overlay
 
+# Device etc
 PRODUCT_COPY_FILES += \
     device/sony/honami/rootdir/system/etc/mixer_paths.xml:system/etc/mixer_paths.xml \
     device/sony/honami/rootdir/system/etc/thermanager.xml:system/etc/thermanager.xml \
@@ -39,6 +40,24 @@ PRODUCT_COPY_FILES += \
 # Bootanimation
 PRODUCT_COPY_FILES += \
    vendor/pac/prebuilt/common/media/bootanimation/1080.zip:system/media/bootanimation.zip
+
+# Device Init
+PRODUCT_PACKAGES += \
+    init.recovery.honami \
+    init.honami \
+    ueventd.honami
+
+# Lights
+PRODUCT_PACKAGES += \
+    lights.honami
+
+# Simple PowerHAL
+PRODUCT_PACKAGES += \
+    power.honami
+
+# NFC
+PRODUCT_PACKAGES += \
+    nfc.honami
 
 PRODUCT_NAME := pac_honami
 PRODUCT_DEVICE := honami
