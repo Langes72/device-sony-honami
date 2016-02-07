@@ -19,8 +19,6 @@ $(call inherit-product, device/sony/rhine/device.mk)
 $(call inherit-product, vendor/sony/honami/honami-vendor.mk)
 $(call inherit-product, vendor/qcom/proprietary/msm8974aa/honami/Android.mk)
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
-$(call inherit-product-if-exists, prebuilts/chromium/webview_prebuilt.mk)
-$(call inherit-product-if-exists, vendor/google/products/gms.mk)
 
 # Enhanced NFC
 $(call inherit-product, vendor/pac/config/nfc_enhanced.mk)
