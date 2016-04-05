@@ -78,3 +78,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.usb.pid_suffix=19E
 
 PAC_BOOTANIMATION_NAME := 1080
+
+# Inherit from those products. Most specific first.
+$(call inherit-product, device/sony/rhine/platform.mk)
+$(call inherit-product, vendor/sony/rhine-honami/honami-vendor.mk)
